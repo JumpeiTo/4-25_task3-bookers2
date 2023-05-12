@@ -1,4 +1,4 @@
-# 課題3 bokkers2作成
+# 課題3 bokkers2
 
 # README
 
