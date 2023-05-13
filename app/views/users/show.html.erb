@@ -1,11 +1,35 @@
 <!--userの詳細ビュー-->
 
-<h4>Books</h4>
-<!-- ユーザーの詳細 -->
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
+<div class="container">
+  <div class="row">
+    <!--左側-->
+    <div class="col-lg-4">
+      <!--部分テンプレートuserにカレントユーザーを定義-->
+      <%= render 'books/list', user: @user, book: @book %>
+    </div>
+    
+    <!--右側 そのユーザーの投稿一覧 -->
+    <div class="col-lg-8">
+      <h2>Books</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |book| %>
+            <tr>
+              <td><%= image_tag @user.get_profile_image(100,100) %></td>
+              <td><%= link_to book_path(book.id) do %><%= book.title %><% end %></td>
+              <td><%= book.body %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-
-<!-- ユーザーの投稿一覧 -->
 

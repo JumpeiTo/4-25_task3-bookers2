@@ -1,27 +1,41 @@
 <!--ブック詳細のビュー-->
-<h4>Book detail</h4>
-<table class="table table-striped">
+<div class="container">
+  <div class="row">
+    <!--左側-->
+    <div class="col-lg-4">
+      <!--部分テンプレートuserにそのブックのユーザーを定義-->
+      <%= render 'books/list', user: @user, book: @bookf %>
+    </div>
+    
+    <!--右側 そのユーザーの投稿一覧 -->
+    <div class="col-lg-8">
+      <h4>Book detail</h4>
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to user_path(@book.user) do %>
+                <%= image_tag @book.user.get_profile_image(100,100) %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to user_path(@book.user) do %>
+                <%= @book.user.name %>
+              <% end %>
+            </td>
+            <td><%= @book.title %></td>
+            <td><%= @book.body %></td>
+            <td>
+              <% if @book.user == current_user %>
+                <%= link_to "edit", edit_book_path(@book.id), method: :get %>
+                <td><%= link_to "Destroy", book_path(@book), method: :delete %></td>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
-  <tbody>
-    <tr>
-      <td>
-        <%= link_to user_path(@book.user) do %>
-          <%= image_tag @book.user.get_profile_image(100,100) %>
-        <% end %>
-      </td>
-      <td>
-        <%= link_to user_path(@book.user) do %>
-          <%= @book.user.name %>
-        <% end %>
-      </td>
-      <td><%= @book.title %></td>
-      <td><%= @book.body %></td>
-      <td>
-        <% if @book.user == current_user %>
-          <%= link_to "edit", edit_book_path(@book.id), method: :get %>
-          <td><%= link_to "Destroy", book_path(@book), method: :delete %></td>
-        <% end %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+

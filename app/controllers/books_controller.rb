@@ -27,6 +27,9 @@ class BooksController < ApplicationController
   # ブック詳細
   def show
     @book = Book.find(params[:id])
+    @user = @book.user
+    @books = @user.books.all
+    @bookf = Book.new
   end
   
   # 削除

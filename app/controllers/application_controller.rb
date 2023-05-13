@@ -7,12 +7,12 @@ class ApplicationController < ActionController::Base
   
 # サインイン後にどこに遷移するか
   def after_sign_in_path_for(resource)
-    about_path
+    users_path
   end
   
 # サインアウト後にどこに遷移するか
   def after_sign_out_path_for(resource)
-    about_path
+    root_path
   end
 
   protected
