@@ -1,11 +1,27 @@
 <!--ブック詳細のビュー-->
 <h4>Book detail</h4>
-<div>
-  <%= image_tag @book.user.get_image %>
-  <%= @book.user.name %>
-  <%= @book.title %>
-  <%= @book.body %>
-  <% if @book.user == current_user %>
-    <%= link_to "Destroy", book_path(@book), method: :delete %>
-  <% end %>
-</div>
+<table class="table table-striped">
+
+  <tbody>
+    <tr>
+      <td>
+        <%= link_to user_path(@book.user) do %>
+          <%= image_tag @book.user.get_profile_image(100,100) %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to user_path(@book.user) do %>
+          <%= @book.user.name %>
+        <% end %>
+      </td>
+      <td><%= @book.title %></td>
+      <td><%= @book.body %></td>
+      <td>
+        <% if @book.user == current_user %>
+          <%= link_to "edit", edit_book_path(@book.id), method: :get %>
+          <td><%= link_to "Destroy", book_path(@book), method: :delete %></td>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>

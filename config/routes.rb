@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   # ルートページ
   root to: "homes#top"
   
-  resources :books, only: [:new, :index, :show, :create, :destroy]
-  resources :users, only: [:show, :edit, :edit]
+  resources :books, only: [:new, :index, :show, :create, :destroy, :edit ,:update]
+  resources :users, only: [:show, :edit, :update, :index]
   get '/homes/about' => 'homes#about' , as: 'about'
   
 end

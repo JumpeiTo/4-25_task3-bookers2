@@ -3,9 +3,11 @@
 <div class="container">
   <div class="row">
     <!--左側-->
-    <div class="col-lg-4" style="background-color: orange;">
-      <h2>サイドバー</h2>
+    <div class="col-lg-4">
+      <!--部分テンプレートuserにカレントユーザーを定義-->
+      <%= render 'list', user: current_user ,book: @book %>
     </div>
+    
     <!--右側の皆の投稿一覧-->
     <div class="col-lg-8">
       <h4>Books</h4>
