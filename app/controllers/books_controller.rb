@@ -2,6 +2,8 @@
 
 class BooksController < ApplicationController
   
+  before_action :is_matching_login_user, only: [:edit, :update]
+  
   # New book投稿
   def new
     
@@ -47,11 +49,10 @@ class BooksController < ApplicationController
   
   # 更新
    def update
-    book = Book.find(params[:id])
-    if book.update(book_params)
-      redirect_to book_path(book.id)
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      redirect_to book_path(@book.id)
     else
-      @book = Book.find(params[:id])
       render :edit
     end
   end
@@ -62,6 +63,15 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :body)
+  end
+  
+  # 他のユーザーからのアクセスを制限
+  def is_matching_login_user
+    book = Book.find(params[:id])
+    user = book.user
+    unless user.id == current_user.id
+      redirect_to index
+    end
   end
   
 end
