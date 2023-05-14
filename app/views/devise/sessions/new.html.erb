@@ -1,4 +1,5 @@
 <!--ログイン画面のビュー-->
+
 <h2>Log in</h2>
 
 <%= form_with model: @user, url: user_session_path do |f| %>
@@ -6,10 +7,6 @@
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
   </div>
-  <!-- <div class="field">-->
-  <!--  <%= f.label :email %><br />-->
-  <!--  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>-->
-  <!--</div>-->
 
   <div class="field">
     <%= f.label :password %><br />
