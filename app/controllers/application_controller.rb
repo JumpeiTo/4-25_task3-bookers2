@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   
 # ログインしていない時のアクセス制限
-  before_action :authenticate_user!, except: [:top]
+  before_action :authenticate_user!, except: [:top, :about]
 # nameをデータとして保存できるよう許可
   before_action :configure_permitted_parameters, if: :devise_controller?
   
