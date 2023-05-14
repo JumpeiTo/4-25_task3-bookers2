@@ -2,12 +2,14 @@
 
 class ApplicationController < ActionController::Base
   
+# ログインしていない時のアクセス制限
+  before_action :authenticate_user!, except: [:top]
 # nameをデータとして保存できるよう許可
   before_action :configure_permitted_parameters, if: :devise_controller?
   
 # サインイン後にどこに遷移するか
   def after_sign_in_path_for(resource)
-    users_path
+    user_path(current_user)
   end
   
 # サインアウト後にどこに遷移するか
